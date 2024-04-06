@@ -3,10 +3,14 @@ import React, { useEffect, useState } from "react";
 import MovieItem from "./MovieItem";
 
 export const MovieRow = ({ title, url }) => {
-  const { movies, setMovies } = useState([]);
+  const [movies, setMovies] = useState([]);
+
   useEffect(() => {
-    axios.get(url).then((Response) => setMovies(Response.data.results));
+    axios.get(url).then((response) => {
+      setMovies(response.data.results);
+    });
   }, [url]);
+
   return (
     <>
       <h2 className="font-nsans-bold md:text-xl p-4 capitalize">{title}</h2>
