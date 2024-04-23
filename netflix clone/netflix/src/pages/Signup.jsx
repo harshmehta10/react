@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
+import { addDoc, collection, doc, setDoc } from "firebase/firestore";
+import { auth, db } from "../services/firebase";
 
 export const Signup = () => {
   const [rememberLogin, setRememberLogin] = useState(true);
@@ -8,6 +10,7 @@ export const Signup = () => {
   const [password, setPassword] = useState("");
   const { user, signUp } = UserAuth();
   const navigate = useNavigate();
+
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 

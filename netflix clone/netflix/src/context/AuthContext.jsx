@@ -25,13 +25,10 @@ export function AuthContextProvider({ children }) {
   }, []);
 
   function signUp(email, password) {
-    createUser;
-  }
-
-  function signUp(email, password) {
-    createUserWithEmailAndPassword(auth, email, password);
-    setDoc(doc(db, "users", email), {
-      favShows: [],
+    return createUserWithEmailAndPassword(auth, email, password).then(() => {
+      setDoc(doc(db, "users", email), {
+        favShows: [],
+      });
     });
   }
 
